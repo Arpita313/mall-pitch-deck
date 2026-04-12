@@ -66,37 +66,23 @@ function VideoHero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden bg-[#050505]"
+      className="relative min-h-[100dvh] overflow-hidden"
     >
-      {/* Full-screen video placeholder — replace with <source> when asset is ready */}
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0 z-0"
         aria-hidden
       >
-        <div className="absolute inset-0 bg-[#080808]" />
-        <div
-          className="absolute inset-0 opacity-90"
-          style={{
-            background:
-              "radial-gradient(ellipse 120% 80% at 50% 20%, rgba(201, 169, 98, 0.12) 0%, transparent 55%), radial-gradient(ellipse 90% 60% at 80% 60%, rgba(201, 169, 98, 0.06) 0%, transparent 50%), linear-gradient(180deg, #0c0c0c 0%, #050505 45%, #030303 100%)",
-          }}
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="rounded-sm border border-white/[0.08] bg-black/30 px-5 py-3 backdrop-blur-sm">
-            <p
-              className="text-center text-[0.65rem] font-medium uppercase tracking-[0.4em] text-white/40"
-              style={{ color: goldMuted }}
-            >
-              Hero video placeholder
-            </p>
-          </div>
-        </div>
-        {/* Replace placeholder layer with:
-            <video autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover">
-              <source src="/hero.mp4" type="video/mp4" />
-            </video>
-        */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/40" />
       </motion.div>
 
       <div
