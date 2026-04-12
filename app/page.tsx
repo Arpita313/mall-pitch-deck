@@ -61,7 +61,6 @@ function VideoHero() {
     offset: ["start start", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.35]);
 
   return (
     <section
@@ -69,7 +68,7 @@ function VideoHero() {
       className="relative min-h-[100dvh] overflow-hidden"
     >
       <motion.div
-        style={{ y, opacity }}
+        style={{ y }}
         className="absolute inset-0 z-0"
         aria-hidden
       >
@@ -78,43 +77,39 @@ function VideoHero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/40" />
       </motion.div>
 
-      <div
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#050505] via-[#050505]/85 to-transparent"
-        aria-hidden
-      />
-
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-24 pt-32 md:px-8 md:pb-32 md:pt-40">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: easeLux }}
-          className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.45em] md:text-xs"
-          style={{ color: gold }}
-        >
-          Luxury retail destination
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, delay: 0.28, ease: easeLux }}
-          className="max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] text-white md:text-6xl lg:text-7xl"
-        >
-          Where scale meets
-          <br />
-          <span className="text-white/95">aspiration.</span>
-        </motion.h1>
+        <div className="max-w-4xl rounded-2xl border border-white/[0.12] bg-white/[0.06] px-6 py-7 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-md md:px-9 md:py-9">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: easeLux }}
+            className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.45em] md:text-xs"
+            style={{ color: gold }}
+          >
+            Luxury retail destination
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.95, delay: 0.28, ease: easeLux }}
+            className="max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.25),0_4px_24px_rgba(0,0,0,0.35)] md:text-6xl lg:text-7xl"
+          >
+            Where scale meets
+            <br />
+            <span className="text-white/95">aspiration.</span>
+          </motion.h1>
+        </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.45, ease: easeLux }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-white/55 md:text-lg"
+          className="mt-8 max-w-xl text-base leading-relaxed text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.5),0_2px_12px_rgba(0,0,0,0.4)] md:text-lg"
         >
           A sales narrative for partners who expect clarity, prestige, and
           measurable impact—anchored at one of North America&apos;s most
