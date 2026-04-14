@@ -12,10 +12,11 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-import PersonaSection, { type PersonaId } from "./components/PersonaSection";
+import PersonaSection from "./components/PersonaSection";
 
 const gold = "#c9a962";
 const goldMuted = "rgba(201, 169, 98, 0.85)";
+type PersonaId = "retailer" | "sponsor" | "eventPromoter";
 
 /** Premium ease — matches Apple-style motion curves */
 const easeLux = [0.16, 1, 0.3, 1] as const;
@@ -317,6 +318,7 @@ function VideoHero() {
     offset: ["start start", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const heroTextShadow = "0 2px 10px rgba(0,0,0,0.8)";
 
   return (
     <section
@@ -333,8 +335,8 @@ function VideoHero() {
           muted
           loop
           playsInline
-          preload="auto"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          poster="/fallback-image.jpg"
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
@@ -342,13 +344,18 @@ function VideoHero() {
       </motion.div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-24 pt-32 md:px-8 md:pb-32 md:pt-40">
-        <div className="max-w-4xl rounded-2xl border border-white/[0.12] bg-white/[0.06] px-6 py-7 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-md md:px-9 md:py-9">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: easeLux }}
+          className="max-w-4xl rounded-2xl bg-black/20 px-6 py-7 shadow-[0_14px_50px_rgba(0,0,0,0.35)] backdrop-blur-md ring-1 ring-white/10 md:px-9 md:py-9"
+        >
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: easeLux }}
             className="mb-5 text-[0.65rem] font-medium uppercase tracking-[0.45em] md:text-xs"
-            style={{ color: gold }}
+            style={{ color: gold, textShadow: heroTextShadow }}
           >
             Luxury retail destination
           </motion.p>
@@ -356,23 +363,25 @@ function VideoHero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.95, delay: 0.28, ease: easeLux }}
-            className="max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.25),0_4px_24px_rgba(0,0,0,0.35),0_0_30px_rgba(201,169,98,0.3)] md:text-6xl lg:text-7xl"
+            className="max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.03em] text-white md:text-6xl lg:text-7xl"
+            style={{ textShadow: heroTextShadow }}
           >
             Where scale meets
             <br />
             <span className="text-white/95">aspiration.</span>
           </motion.h1>
-        </div>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.45, ease: easeLux }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.5),0_2px_12px_rgba(0,0,0,0.4)] md:text-lg"
-        >
-          A sales narrative for partners who expect clarity, prestige, and
-          measurable impact—anchored at one of North America&apos;s most
-          ambitious retail environments.
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.45, ease: easeLux }}
+            className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg"
+            style={{ textShadow: heroTextShadow }}
+          >
+            A sales narrative for partners who expect clarity, prestige, and
+            measurable impact—anchored at one of North America&apos;s most
+            ambitious retail environments.
+          </motion.p>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -791,7 +800,7 @@ export default function Home() {
         <PersonaToggle persona={persona} onPersonaChange={setPersona} />
         <VideoHero />
         <ByTheNumbers />
-        <PersonaSection persona={persona} onPersonaChange={setPersona} />
+        <PersonaSection />
         <WhySection persona={persona} />
         <ConciergeInquiry />
         <Footer />
