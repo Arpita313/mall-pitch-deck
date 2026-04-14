@@ -4,10 +4,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const gold = "#c9a962";
 
-function PersonaSection() {
-  const [activeTab, setActiveTab] = useState("Retail");
+interface PersonaContentItem {
+  title: string;
+  stat: string;
+  desc: string;
+  cta: string;
+}
 
-  const content = {
+interface PersonaContent {
+  Retail: PersonaContentItem;
+  Sponsors: PersonaContentItem;
+  Events: PersonaContentItem;
+}
+
+function PersonaSection() {
+  const [activeTab, setActiveTab] = useState<keyof PersonaContent>("Retail");
+
+  const content: PersonaContent = {
     Retail: {
       title: "Prime Flagship Opportunities",
       stat: "98% Occupancy",
@@ -36,7 +49,7 @@ function PersonaSection() {
         </p>
 
         <div className="flex justify-center gap-4 mb-16">
-          {Object.keys(content).map((tab) => (
+          {(Object.keys(content) as Array<keyof PersonaContent>).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
