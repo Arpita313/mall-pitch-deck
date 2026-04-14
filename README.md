@@ -2,9 +2,9 @@
 
 
 ## 📸 Project Showcases
-![Hero Section](/screenshots/Image1.png)
-![Persona Toggle](/screenshots/Image2.png)
-![Mobile Optimization](/screenshots/Image3.png)
+![Hero Section](public/Screenshots/Image1.png)
+![Persona Toggle](public/Screenshots/Image2.png)
+![Mobile Optimization](public/Screenshots/Image3.png)
 
 ---
 *Note: Make sure your file names in the /public/screenshots folder match these exactly (e.g., image1.png, image2.png, image3.png).*
