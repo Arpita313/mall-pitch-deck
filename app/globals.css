@@ -40,3 +40,18 @@ body {
   mix-blend-mode: soft-light;
   opacity: 0.14;
 }
+
+
+/* Fix for Safari flickering and video issues */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+video {
+  /* Prevents Safari from showing a play button over the video */
+  &::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+  }
+}
